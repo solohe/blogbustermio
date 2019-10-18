@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blogbuster</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <h1>BLOGBUSTER</h1>
+        <br>
+        <br>
+        <form id="blogbusterform">
+                Id:<br>
+                <input class="id" type="text" name="id">
+                <br>
+                Título:<br>
+                <input type="text" name="titulo">
+                <br>
+                Cuerpo:<br>
+                <input type="text" name="cuerpo">
+                <br>
+                Etiquetas:<br>
+                <input type="text" name="etiquetas">
+                <br>
+                Fecha:<br>
+                <input type="text" name="fecha">
+                <br><br>
+                <select>
+                    <option value="get">Get</option>
+                    <option value="getall">Get All</option>
+                    <option value="getcount">Get Count</option>
+                    <option value="remove">Remove</option>
+                    <option value="new">New</option>
+                    <option value="update">Update</option>
+                </select>
+                <br><br>
+                <input type="submit" value="Submit">
+                </form> 
+        <br><br>
+        <div id="result"></div>
+        
+        <script src="llamada.js"></script>
+    </body>
+</html>
