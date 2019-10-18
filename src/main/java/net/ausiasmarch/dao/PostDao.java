@@ -134,9 +134,7 @@ public class PostDao {
         //se mueve por las filas
         iResult.last();
         //devuelve la posición actual del cursor
-        int count = iResult.getRow();
-        System.out.print(count);
-        
+        int count = iResult.getRow();   
         return count;
           
     }
