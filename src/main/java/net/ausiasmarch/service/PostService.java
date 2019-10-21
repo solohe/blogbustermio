@@ -13,6 +13,9 @@ import net.ausiasmarch.dao.PostDao;
 import net.ausiasmarch.factory.ConnectionFactory;
 import net.ausiasmarch.setting.ConnectionSettings;
 
+import com.thedeanda.lorem.Lorem;
+import com.thedeanda.lorem.LoremIpsum;
+
 public class PostService {
 
     HttpServletRequest oRequest = null;
@@ -116,6 +119,30 @@ public class PostService {
            // oResponseBean = new ResponseBean(200, strJson);
            return "{\"status\":200,\"response\":" + strJson + "}";
         };
+        oConnectionImplementation.disposeConnection();
+        return oGson.toJson(oResponseBean);
+    }
+    
+    public String fill() throws SQLException{
+        ConnectionInterface oConnectionImplementation = ConnectionFactory.getConnection(ConnectionSettings.connectionPool);
+        Connection oConnection = oConnectionImplementation.newConnection();
+        
+        Lorem oLorem = LoremIpsum.getInstance();
+        int number = Integer.parseInt(oRequest.getParameter("limit"));
+        
+        String titulo,cuerpo,etiquetas;
+        Gson oGson = new Gson();
+        PostDao oPostDao = new PostDao(oConnection);
+        PostBean oPostBean;
+        
+        for(int i=0; i<number; i++){
+            titulo = oLorem.getTitle(2,4);
+            cuerpo = oLorem.getParagraphs(2,4);
+            etiquetas = oLorem.getWords(5,10);
+            oPostBean = new PostBean(titulo,cuerpo,etiquetas);
+            oPostDao.insert(oPostBean);
+        }
+        ResponseBean oResponseBean = new ResponseBean(200, "ok");
         oConnectionImplementation.disposeConnection();
         return oGson.toJson(oResponseBean);
     }
